@@ -1,0 +1,18 @@
+.logout-link {
+  background: none;
+  border: none;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.logout-link:hover {
+  background-color: #333;
+  color: #fff;
+}

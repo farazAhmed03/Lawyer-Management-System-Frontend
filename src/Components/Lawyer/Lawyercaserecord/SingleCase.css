@@ -1,0 +1,97 @@
+.case-detail-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #f0f2f5;
+  border-radius: 12px;
+}
+
+.case-detail-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.case-detail-card h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.case-detail-card p {
+  margin: 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.case-detail-card a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background-color: #f0ad4e;
+}
+
+.status.accepted {
+  background-color: #28a745;
+}
+
+.status.closed {
+  background-color: #dc3545;
+}
+
+.status.dismissed {
+  background-color: #6c757d;
+}
+
+.case-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.case-actions button {
+  padding: 10px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.case-actions button:nth-child(1) {
+  background-color: #28a745;
+  color: white;
+}
+.case-actions button:nth-child(1):hover {
+  background-color: #218838;
+}
+
+.case-actions button:nth-child(2) {
+  background-color: #dc3545;
+  color: white;
+}
+.case-actions button:nth-child(2):hover {
+  background-color: #c82333;
+}
+
+.case-actions button:nth-child(3) {
+  background-color: #6c757d;
+  color: white;
+}
+.case-actions button:nth-child(3):hover {
+  background-color: #5a6268;
+}

@@ -1,0 +1,89 @@
+.verification-page {
+  min-height: 100vh;
+  background-color: #000;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.verification-box {
+  background-color: #111;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.verification-box h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.otp-instruction {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.otp-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.otp-inputs input {
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  text-align: center;
+  background-color: #222;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.otp-inputs input:focus {
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.verify-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.verify-btn:hover {
+  background-color: #0056b3;
+}
+
+.resend-link {
+  font-size: 14px;
+  color: #00bfff;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.3s;
+}
+
+.resend-link.disabled {
+  color: gray;
+  /* pointer-events: none; */
+  cursor: not-allowed;
+}

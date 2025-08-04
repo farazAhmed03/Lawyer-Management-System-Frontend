@@ -1,0 +1,84 @@
+.appointments-container {
+  padding: 20px;
+}
+
+.appointments-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.no-appointments {
+  font-size: 18px;
+  color: #888;
+}
+
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.appointments-table th,
+.appointments-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.appointments-table th {
+  background-color: #f5f5f5;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.status-approved {
+  background-color: #28a745; /* Green */
+}
+
+.status-pending {
+  background-color: #ffc107; /* Yellow */
+  color: black;
+}
+
+.status-rejected {
+  background-color: #dc3545; /* Red */
+}
+
+.submit-case-btn {
+  margin-left: 20px;
+  padding: 4px 12px !important;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 7px;
+  transition: background 0.3s ease;
+}
+
+.submit-case-btn:hover {
+  background-color: #0056b3;
+}
+
+
+.submit-case-btn {
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 50px;
+  transition: 0.3s;
+  border: none;
+  min-width: 160px;
+  text-align: center;
+}
+
+.submit-case-btn.disabled {
+  background-color: red;
+  cursor: not-allowed;
+}

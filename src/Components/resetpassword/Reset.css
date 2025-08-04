@@ -1,0 +1,16 @@
+.reset-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0b1261, #a07645);
+    padding: 20px;
+}
+
+.reset-card {
+    max-width: 450px;
+    width: 100%;
+    border-radius: 15px;
+    background: white;
+    transition: transform 0.3s ease;
+}
