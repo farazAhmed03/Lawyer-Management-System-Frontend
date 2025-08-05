@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import './layout.css';
 import d1 from '../../../Asserts/Img/d1.svg';
@@ -10,16 +10,26 @@ import { toast } from 'react-toastify';
 
 export default function Layout() {
   const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const closeSidebar = () => setSidebarOpen(false);
 
   return (
     <div className="layout">
-      <aside className="sidebar">
+      {/* Hamburger Icon */}
+      <div className="hamburger-icon" onClick={toggleSidebar}>
+        <Icon icon="mdi:menu" width={28} />
+      </div>
+
+      {/* Sidebar */}
+      <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="logo">
           <img src={d1} alt="Logo" />
         </div>
 
         <nav>
-          <ul className="nav-list">
+          <ul className="nav-list" onClick={closeSidebar}>
             <li>
               <NavLink to="/dashboard" className="nav-item">
                 <Icon icon="mdi:view-dashboard-outline" width={20} />
@@ -28,12 +38,11 @@ export default function Layout() {
             </li>
 
             <li>
-              <NavLink to="/dashboard/myappointments" className="nav-item" onClick={() => console.log('Clicked')}>
+              <NavLink to="/dashboard/myappointments" className="nav-item">
                 <Icon icon="mdi:calendar-outline" width={20} />
                 My Appointments
               </NavLink>
             </li>
-
 
             <li>
               <NavLink to="/dashboard/mycase" className="nav-item">
@@ -43,14 +52,14 @@ export default function Layout() {
             </li>
             <li>
               <NavLink to="/dashboard/myprofile" className="nav-item">
-                <Icon icon="mdi:briefcase-outline" width={20} />
+                <Icon icon="mdi:account-outline" width={20} />
                 My Profile
               </NavLink>
             </li>
             <li>
               <NavLink to="/dashboard/seelawyer" className="nav-item">
-                <Icon icon="mdi:briefcase-outline" width={20} />
-                All lawyers
+                <Icon icon="mdi:account-group-outline" width={20} />
+                All Lawyers
               </NavLink>
             </li>
 
@@ -60,7 +69,6 @@ export default function Layout() {
                 My Chats
               </NavLink>
             </li>
-
 
             <li>
               <a href="/payment" className="nav-item">
@@ -85,15 +93,12 @@ export default function Layout() {
                   }
                 }}
               />
-
             </li>
-
-
           </ul>
         </nav>
       </aside>
 
-      <main className="main-content">
+      <main className="main-content" onClick={closeSidebar}>
         <Outlet />
       </main>
     </div>
