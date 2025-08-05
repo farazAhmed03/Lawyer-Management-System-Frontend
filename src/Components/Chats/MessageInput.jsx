@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import BASE_URL from '../../Config/Api';
+import './MessageInput.css';
 
 function MessageInput({ selectedChat, socket, setMessages }) {
     const [content, setContent] = useState('');
