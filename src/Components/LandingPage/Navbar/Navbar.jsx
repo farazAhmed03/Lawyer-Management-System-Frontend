@@ -11,6 +11,11 @@ export default function Navbar() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
+  const goToJoin = () => {
+    closeMenu();
+    navigate("/main");
+  };
+
   return (
     <>
       <nav className="navbardiv">
@@ -23,13 +28,13 @@ export default function Navbar() {
           <li onClick={() => navigate("/aboutus")}>About Us</li>
           <li onClick={() => navigate("/blog")}>Blog</li>
           <li onClick={() => navigate("/dashboard/seelawyer")}>Search Lawyers</li>
-          <li className="mobile-signinbtn">
-            <button onClick={() => { closeMenu(); navigate("/main"); }}>Join Us</button>
+          <li className="only-mobile">
+            <button className="joinbtn" onClick={goToJoin}>Join Us</button>
           </li>
         </ul>
 
-        <div onClick={() => navigate("/main")} className="signinbtn">
-          <button>Join Us</button>
+        <div className="only-desktop">
+          <button className="joinbtn" onClick={goToJoin}>Join Us</button>
         </div>
 
         <button className="menu-btn" onClick={toggleMenu}>

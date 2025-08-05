@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 2rem;
+  padding: 12px 3rem;
   background: white;
   position: relative;
   z-index: 1000;
@@ -10,7 +10,7 @@
 }
 
 .logo img {
-  width: 160px;
+  width: 200px;
 }
 
 .uflex {
@@ -21,31 +21,32 @@
   margin: 0;
 }
 
-.uflex li a,
 .uflex li {
-  font-size: 1.2rem;
+  font-size: 2rem !important;
   color: #333;
   cursor: pointer;
-  text-decoration: none;
   transition: color 0.3s;
+  font-weight: 500;
+  font-size: 1.3rem;
 }
 
-.uflex li a:hover {
+.uflex li:hover {
   color: #D2AB2D;
 }
 
-.signinbtn button {
-  padding: 0.6rem 1.2rem;
+.joinbtn {
+  padding: 1rem 1.2rem;
   background-color: #D2AB2D;
-  color: #fff;
+  color: white;
   border: none;
   font-size: 16px;
   border-radius: 6px;
   font-weight: 500;
   transition: 0.3s;
+  cursor: pointer;
 }
 
-.signinbtn button:hover {
+.joinbtn:hover {
   background-color: #b29023;
   transform: scale(1.05);
 }
@@ -58,22 +59,24 @@
   z-index: 1001;
 }
 
-/* 🔥 Mobile Styles */
+/* Responsive */
 @media (max-width: 768px) {
   .uflex {
     flex-direction: column;
-    align-items: flex-start;
     position: fixed;
     top: 0;
     right: -100%;
     width: 270px;
     height: 100%;
-    background: #fff;
-    box-shadow: -3px 0 10px rgba(0, 0, 0, 0.1);
-    padding: 80px 20px 20px;
+    background: white;
+    padding: 80px 20px;
     transition: right 0.3s ease-in-out;
     z-index: 1000;
     gap: 20px;
+  }
+
+  .uflex li {
+    font-size: 1.5rem !important;
   }
 
   .uflex.open {
@@ -84,29 +87,33 @@
     display: block;
   }
 
-  .signinbtn {
+  .only-desktop {
     display: none;
   }
 
-  .mobile-signinbtn {
+  .only-mobile {
     display: block;
     width: 100%;
   }
 
-  .mobile-signinbtn button {
+  .only-mobile .joinbtn {
     width: 100%;
-    padding: 12px;
-    background-color: #D2AB2D;
-    color: #fff;
-    border: none;
-    font-size: 16px;
-    border-radius: 6px;
   }
 
   .overlay {
     position: fixed;
     inset: 0;
-    /* background: rgba(0, 0, 0, 0.4); */
+    background: rgba(0, 0, 0, 0.3);
     z-index: 999;
+  }
+}
+
+@media (min-width: 769px) {
+  .only-mobile {
+    display: none;
+  }
+
+  .only-desktop {
+    display: block;
   }
 }
