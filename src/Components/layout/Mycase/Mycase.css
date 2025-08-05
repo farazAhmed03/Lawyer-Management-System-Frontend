@@ -1,104 +1,138 @@
 .appointments-container {
-    width: 100%;
-    padding: 50px;
+  padding: 30px 20px;
+  background-color: #fff;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .appointments-title {
-    text-align: center;
-    font-size: 26px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 30px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.no-appointments {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-top: 80px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
 }
 
 .appointments-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-}
-
-.appointments-table thead {
-    background-color: #f8f8f8;
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
 .appointments-table th,
 .appointments-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  font-size: 14px;
 }
 
-.appointments-table th {
-    font-weight: 600;
-}
-
-.appointments-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-.no-appointments {
-    text-align: center;
-    font-size: 18px;
-    color: #555;
-    margin-top: 100px;
+.appointments-table thead {
+  background-color: #f1f1f1;
 }
 
 .status {
-    padding: 5px 10px;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 13px;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: capitalize;
+  color: white;
 }
 
 .status.pending {
-    background-color: #b69b21;
-    color: #222 !important;
+  background-color: #fbc02d;
+  color: #000;
 }
 
 .status.in-review {
-    background-color: #29b6f6;
+  background-color: #29b6f6;
 }
 
-.status.resolved,
-.status.accepted {
-    background-color: #4caf50;
+.status.accepted,
+.status.resolved {
+  background-color: #4caf50;
 }
 
 .status.rejected {
-    background-color: #ef5350;
+  background-color: #e53935;
 }
 
 .status.closed {
-    background-color: #6d4c41;
+  background-color: #6d4c41;
 }
 
 .view-pdf-link {
-    color: #0d47a1;
-    text-decoration: underline;
-    font-weight: 500;
+  color: #1a73e8;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
 .view-pdf-link:hover {
-    color: #06468f;
+  color: #0d47a1;
 }
 
 .review-btn {
-    padding: 8px 16px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s ease;
+  padding: 6px 14px;
+  font-size: 13px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
+
 .review-btn:hover {
-    background-color: #3a913e;
+  background-color: #3e8e41;
 }
+
 .disabled-btn {
-    padding: 8px 16px;
-    background-color: #ccc;
-    color: #666;
-    border: none;
-    border-radius: 6px;
-    cursor: not-allowed;
+  padding: 6px 14px;
+  font-size: 13px;
+  background-color: #ccc;
+  color: #666;
+  border: none;
+  border-radius: 4px;
+  cursor: not-allowed;
+}
+
+/* 📱 Responsive Styles */
+@media (max-width: 768px) {
+  .appointments-container {
+    padding: 20px 10px;
+  }
+
+  .appointments-title {
+    font-size: 22px;
+  }
+
+  .appointments-table th,
+  .appointments-table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .review-btn,
+  .disabled-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
 }
