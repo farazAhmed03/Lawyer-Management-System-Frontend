@@ -27,63 +27,57 @@ export default function MyAppointments() {
   };
 
   const handleSubmitCase = (appt) => {
-    toast.info(`Proceed to submit case for ${appt.lawyer?.username}`);
+    if (appt.linkedCase) return;
     navigate(`/applycase/${appt._id}`);
   };
 
   return (
     <div className="appointments-container">
       <ToastContainer />
-      <h2 className="appointments-title">My Appointments</h2>
+      <h2 className="appointments-title">📅 My Appointments</h2>
 
       {appointments.length === 0 ? (
         <p className="no-appointments">No Appointments Found.</p>
       ) : (
-        <table className="appointments-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Lawyer</th>
-              <th>Specialization</th>
-              <th>Status & Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {appointments.map((appt) => {
-              const isCaseSubmitted = appt.linkedCase !== null;
+        <div className="table-wrapper">
+          <table className="appointments-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Lawyer</th>
+                <th>Specialization</th>
+                <th>Status & Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {appointments.map((appt) => {
+                const isCaseSubmitted = appt.linkedCase !== null;
 
-              return (
-                <tr key={appt._id}>
-                  <td>{new Date(appt.date).toLocaleString()}</td>
-                  <td>{appt.lawyer?.username || 'N/A'}</td>
-                  <td>{appt.lawyer?.specialization || 'N/A'}</td>
-                  <td>
-                    <span
-                      className={`status ${appt.status === 'approved'
-                          ? 'status-approved'
-                          : appt.status === 'rejected'
-                            ? 'status-rejected'
-                            : 'status-pending'
-                        }`}
-                    >
-                      {appt.status}
-                    </span>
-
-                    {appt.status === 'approved' && (
-                      <button
-                        className={`submit-case-btn ${isCaseSubmitted ? 'disabled' : ''}`}
-                        onClick={() => handleSubmitCase(appt)}
-                        disabled={isCaseSubmitted}
-                      >
-                        {isCaseSubmitted ? 'Already Submitted' : 'Submit Case'}
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                return (
+                  <tr key={appt._id}>
+                    <td>{new Date(appt.date).toLocaleString()}</td>
+                    <td>{appt.lawyer?.username || 'N/A'}</td>
+                    <td>{appt.lawyer?.specialization || 'N/A'}</td>
+                    <td>
+                      <span className={`status ${appt.status}`}>
+                        {appt.status}
+                      </span>
+                      {appt.status === 'approved' && (
+                        <button
+                          className={`submit-case-btn ${isCaseSubmitted ? 'disabled' : ''}`}
+                          onClick={() => handleSubmitCase(appt)}
+                          disabled={isCaseSubmitted}
+                        >
+                          {isCaseSubmitted ? 'Already Submitted' : 'Submit Case'}
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
