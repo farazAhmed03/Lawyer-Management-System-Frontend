@@ -6,7 +6,7 @@
 }
 
 .dashboard-title {
-  font-size: 28px;
+  font-size: 32px;
   margin-bottom: 35px;
   text-align: center;
   color: #1d3557;
@@ -14,7 +14,7 @@
 }
 
 .section-heading {
-  font-size: 20px;
+  font-size: 22px;
   color: #444;
   margin: 30px 0 15px;
   font-weight: 600;
@@ -24,12 +24,12 @@
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  gap: 25px;
 }
 
 .stat-card {
   background: white;
-  padding: 25px 15px;
+  padding: 30px 20px;
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -50,11 +50,29 @@
 }
 
 .stat-card p {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   color: #222;
 }
 
+/* Specific Top Borders */
+.stat-card.total {
+  border-top: 5px solid #4dabf7;
+}
+
+.stat-card.accepted {
+  border-top: 5px solid #51cf66;
+}
+
+.stat-card.rejected {
+  border-top: 5px solid #ff6b6b;
+}
+
+.stat-card.cases {
+  border-top: 5px solid #ffa94d;
+}
+
+/* Extra Icons (optional) */
 .stat-card svg {
   color: #444;
   transition: color 0.3s ease;
@@ -62,34 +80,4 @@
 
 .stat-card:hover svg {
   color: #1d3557;
-}
-
-/* Medium Devices (Tablet) */
-@media (max-width: 992px) {
-  .stats-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-}
-
-/* Small Devices (Mobile) */
-@media (max-width: 600px) {
-  .dashboard-title {
-    font-size: 22px;
-  }
-
-  .stat-card p {
-    font-size: 20px;
-  }
-
-  .stat-card h3 {
-    font-size: 16px;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stat-card {
-    padding: 20px 12px;
-  }
 }

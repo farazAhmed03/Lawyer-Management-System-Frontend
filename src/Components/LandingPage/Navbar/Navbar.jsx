@@ -11,21 +11,11 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  const goTomainpage = () => {
-    navigate("/main");
-  };
-
-  const gotheaboutuspage = () => {
-    navigate("/aboutus");
-  };
-
-  const gotheblogpage = () => {
-    navigate("/blog");
-  };
+  const goTomainpage = () => navigate("/main");
+  const gotheaboutuspage = () => navigate("/aboutus");
+  const gotheblogpage = () => navigate("/blog");
 
   const handleSearchLawyers = async () => {
     try {
@@ -49,6 +39,9 @@ export default function Navbar() {
         <li onClick={gotheblogpage}>Blog</li>
         <li><a href="/">Practice Area</a></li>
         <li onClick={handleSearchLawyers}>Search Lawyers</li>
+        <li className="mobile-signinbtn">
+          <button onClick={goTomainpage}>Join Us</button>
+        </li>
       </ul>
 
       <div onClick={goTomainpage} className="signinbtn">
@@ -56,11 +49,7 @@ export default function Navbar() {
       </div>
 
       <button className="menu-btn" onClick={toggleMenu}>
-        <Icon
-          icon={menuOpen ? "basil:cross-outline" : "gg:menu-right"}
-          width="30"
-          height="30"
-        />
+        <Icon icon={menuOpen ? "basil:cross-outline" : "gg:menu-right"} width="30" height="30" />
       </button>
 
       {menuOpen && <div className="overlay" onClick={toggleMenu}></div>}
