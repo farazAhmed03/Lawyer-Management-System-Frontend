@@ -2,27 +2,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 6rem;
+  padding: 12px 2rem;
   background: white;
   position: relative;
+  z-index: 1000;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
 
 .logo img {
-  width: 250px;
+  width: 160px;
 }
 
 .uflex {
   display: flex;
   align-items: center;
-  gap: 5rem;
+  gap: 3rem;
   list-style: none;
   margin: 0;
 }
 
-.uflex li,
-.uflex li a {
-  font-size: 1.8rem;
-  color: #616161;
+.uflex li a,
+.uflex li {
+  font-size: 1.2rem;
+  color: #333;
   cursor: pointer;
   text-decoration: none;
   transition: color 0.3s;
@@ -33,11 +35,10 @@
 }
 
 .signinbtn button {
-  padding: 1rem 2rem;
+  padding: 0.6rem 1.2rem;
   background-color: #D2AB2D;
   color: #fff;
   border: none;
-  cursor: pointer;
   font-size: 16px;
   border-radius: 6px;
   font-weight: 500;
@@ -46,7 +47,7 @@
 
 .signinbtn button:hover {
   background-color: #b29023;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .menu-btn {
@@ -54,27 +55,25 @@
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 10;
+  z-index: 1001;
 }
 
-.menu-btn svg {
-  color: #111;
-}
-
-/* Mobile Styles */
+/* 🔥 Mobile Styles */
 @media (max-width: 768px) {
   .uflex {
     flex-direction: column;
+    align-items: flex-start;
     position: fixed;
     top: 0;
     right: -100%;
-    width: 250px;
+    width: 270px;
     height: 100%;
-    background: white;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    padding: 50px 20px;
+    background: #fff;
+    box-shadow: -3px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 80px 20px 20px;
     transition: right 0.3s ease-in-out;
-    z-index: 9;
+    z-index: 1000;
+    gap: 20px;
   }
 
   .uflex.open {
@@ -91,12 +90,12 @@
 
   .mobile-signinbtn {
     display: block;
-    margin-top: 20px;
+    width: 100%;
   }
 
   .mobile-signinbtn button {
-    padding: 1rem;
     width: 100%;
+    padding: 12px;
     background-color: #D2AB2D;
     color: #fff;
     border: none;
@@ -107,7 +106,7 @@
   .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 8;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
   }
 }
