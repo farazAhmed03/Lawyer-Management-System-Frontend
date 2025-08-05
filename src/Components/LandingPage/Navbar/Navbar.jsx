@@ -19,11 +19,10 @@ export default function Navbar() {
         </div>
 
         <ul className={`uflex ${menuOpen ? "open" : ""}`}>
-          <li><a href="/">Home</a></li>
-          <li><a onClick={closeMenu}>About Us</a></li>
-          <li><a onClick={closeMenu}>Blog</a></li>
-          <li><a>Practice Area</a></li>
-          <li><a onClick={closeMenu}>Search Lawyers</a></li>
+          <li onClick={() => navigate("/")}>Home</li>
+          <li onClick={() => navigate("/aboutus")}>About Us</li>
+          <li onClick={() => navigate("/blog")}>Blog</li>
+          <li onClick={() => navigate("/dashboard/seelawyer")}>Search Lawyers</li>
           <li className="mobile-signinbtn">
             <button onClick={() => { closeMenu(); navigate("/main"); }}>Join Us</button>
           </li>
