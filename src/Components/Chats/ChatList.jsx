@@ -1,83 +1,85 @@
-import { useEffect, useState, useRef } from "react";
-import axios from "axios";
-import MessageBubble from "./MessageBubble";
-import MessageInput from "./MessageInput";
-import BASE_URL from "../../Config/Api";
-import "./ChatWindow.css";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import BASE_URL from '../../Config/Api';
+import { useNavigate } from 'react-router-dom';
 
-function ChatWindow({ selectedChat, socket }) {
-  const [messages, setMessages] = useState([]);
-  const messagesEndRef = useRef(null);
+function ChatList({ onSelectChat, selectedParticipantId, directLawyer }) {
+    const [chats, setChats] = useState([]);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchMessages = async () => {
-      if (!selectedChat) return;
-      try {
-        const res = await axios.get(`${BASE_URL}/chat/messages/${selectedChat.participant._id}`, {
-          withCredentials: true,
-        });
-        setMessages(res.data.data);
-      } catch (err) {
-        console.log(err);
-      }
+    useEffect(() => {
+        const fetchChats = async () => {
+            try {
+                const res = await axios.get(`${BASE_URL}/chat/list`, { withCredentials: true });
+                setChats(res.data.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchChats();
+    }, []);
+
+    useEffect(() => {
+        if (!selectedParticipantId) return;
+
+        if (directLawyer && directLawyer.participant?._id === selectedParticipantId) {
+            onSelectChat(directLawyer);
+        } else {
+            const foundChat = chats.find(chat => chat.participant?._id === selectedParticipantId);
+            if (foundChat) {
+                onSelectChat(foundChat);
+            }
+        }
+    }, [selectedParticipantId, chats, directLawyer, onSelectChat]);
+
+    const handleSelectChat = (chat) => {
+        navigate(`/chat/${chat.participant?._id}`);
+        onSelectChat(chat);
     };
-    fetchMessages();
-  }, [selectedChat]);
 
-  useEffect(() => {
-    if (!socket) return;
-    socket.on("receiveMessage", (message) => {
-      setMessages((prev) => [...prev, message]);
-    });
-    return () => {
-      socket.off("receiveMessage");
-    };
-  }, [socket]);
+    const isAlreadyInChat = chats.some(chat => chat.participant?._id === directLawyer?.participant?._id);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    return (
+        <div className="chat-list">
+            <h4>Chats</h4>
 
-  const handleClearChat = async () => {
-    try {
-      await axios.delete(`${BASE_URL}/chat/messages/${selectedChat.participant._id}/clear`, {
-        withCredentials: true,
-      });
-      setMessages([]);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+            {!isAlreadyInChat && directLawyer && (
+                <div
+                    key={directLawyer.participant._id}
+                    className={`chat-item ${directLawyer.participant._id === selectedParticipantId ? 'selected' : ''}`}
+                    onClick={() => handleSelectChat(directLawyer)}
+                >
+                    <img
+                        src={directLawyer.participant.image || 'https://via.placeholder.com/40'}
+                        alt="profile"
+                        className="chat-avatar"
+                    />
+                    <div className="chat-info">
+                        <p>{directLawyer.participant.username}</p>
+                        <small>Start new chat...</small>
+                    </div>
+                </div>
+            )}
 
-  return (
-    <div className="chat-window">
-      {selectedChat ? (
-        <>
-          <div className="chat-header">
-            <h5>{selectedChat.participant.username}</h5>
-            <button className="clear-chat-btn" onClick={handleClearChat}>
-              Clear Chat
-            </button>
-          </div>
-
-          <div className="messages">
-            {messages.map((msg) => (
-              <MessageBubble key={msg._id} msg={msg} />
+            {chats.map(chat => (
+                <div
+                    key={chat.chatId}
+                    className={`chat-item ${chat.participant?._id === selectedParticipantId ? 'selected' : ''}`}
+                    onClick={() => handleSelectChat(chat)}
+                >
+                    <img
+                        src={chat.participant?.image || 'https://via.placeholder.com/40'}
+                        alt="profile"
+                        className="chat-avatar"
+                    />
+                    <div className="chat-info">
+                        <p>{chat.participant?.username}</p>
+                        <small>{chat.lastMessage?.content?.slice(0, 20)}...</small>
+                    </div>
+                </div>
             ))}
-            <div ref={messagesEndRef}></div>
-          </div>
-
-          <MessageInput
-            selectedChat={selectedChat}
-            socket={socket}
-            setMessages={setMessages}
-          />
-        </>
-      ) : (
-        <div className="no-chat">Select a chat to start messaging</div>
-      )}
-    </div>
-  );
+        </div>
+    );
 }
 
-export default ChatWindow;
+export default ChatList;
