@@ -58,6 +58,10 @@ export default function MyCases() {
     navigate(`/review/${lawyerId}/${caseId}`);
   };
 
+  const handleChatClick = (lawyerId) => {
+    navigate(`/chat/${lawyerId}`);
+  };
+
   return (
     <div className="appointments-container">
       <h2 className="appointments-title">My Cases</h2>
@@ -84,11 +88,14 @@ export default function MyCases() {
                   ? `${BASE_URL.replace("/api/v1", "")}${caseItem.file}`
                   : null;
 
+                const caseStatus = caseItem.status?.toLowerCase();
+                const showChatButton = caseStatus === "accepted" || caseStatus === "in_progress";
+
                 return (
                   <tr key={caseItem._id}>
                     <td>{caseItem.title}</td>
                     <td>
-                      <span className={`status ${caseItem.status?.toLowerCase()}`}>
+                      <span className={`status ${caseStatus}`}>
                         {caseItem.status}
                       </span>
                     </td>
@@ -109,22 +116,33 @@ export default function MyCases() {
                       )}
                     </td>
                     <td>
-                      {caseItem.status?.toLowerCase() === "closed" && (
-                        caseItem.reviewGiven ? (
-                          <button className="disabled-btn" disabled>
-                            Review Submitted
-                          </button>
-                        ) : (
+                      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                        {showChatButton && (
                           <button
-                            className="review-btn"
-                            onClick={() =>
-                              handleReviewClick(caseItem.lawyer?._id, caseItem._id)
-                            }
+                            className="chat-btn"
+                            onClick={() => handleChatClick(caseItem.lawyer?._id)}
                           >
-                            Give Review
+                            Chat with Lawyer
                           </button>
-                        )
-                      )}
+                        )}
+                        
+                        {caseStatus === "closed" && (
+                          caseItem.reviewGiven ? (
+                            <button className="disabled-btn" disabled>
+                              Review Submitted
+                            </button>
+                          ) : (
+                            <button
+                              className="review-btn"
+                              onClick={() =>
+                                handleReviewClick(caseItem.lawyer?._id, caseItem._id)
+                              }
+                            >
+                              Give Review
+                            </button>
+                          )
+                        )}
+                      </div>
                     </td>
                   </tr>
                 );
